@@ -1,18 +1,16 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
-#include <QTableWidgetItem>
-#include <QTreeWidgetItem>
 #include <QApplication>
 #include <QTableWidget>
 #include <QMainWindow>
 #include <QMessageBox>
 #include <QTreeWidget>
+#include <QTextBrowser>
 #include <QStringList>
 #include <QCloseEvent>
 #include <QTextCodec>
 #include <stdlib.h>
 #include <string.h>
-#include <QString>
 #include <QString>
 #include <QDialog>
 #include <QDebug>
@@ -20,13 +18,7 @@
 #include <stdio.h>
 #include <malloc.h>
 
-#define TRUE 1
-#define FALSE 0
-#define OK 1
-#define ERROR 0
-#define INFESTABLE -1
 extern struct head T;
-typedef int status;
 
 typedef struct node{                        /*课堂节点*/
     int level;                              //在所有课程中的层级
@@ -80,9 +72,19 @@ class MainWindow : public QMainWindow
 
 public:
     explicit MainWindow(QWidget *parent = 0);
-    status add_struct(int x);
-    status showall(int x);
+    void add_teacher(char name[10],char teach[10]);
+    void add_classroom(char name[10]);
+    void add_classes(char name[10]);
+    void add_lesson(char name[10]);
+    void add_node();
     ~MainWindow();
+
+private slots:
+    void showall();
+    void get_teacher();
+    void get_classroom();
+    void get_classes();
+    void get_lesson();
 
 private:
     Ui::MainWindow *ui;
