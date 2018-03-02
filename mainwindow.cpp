@@ -65,42 +65,6 @@ void add_teacher(char name_new[10],char teach_new[10]){    //添加教师链表
         }
     }
 }
-void add_classroom(char name_new[10]){                     //添加教室
-    if(!(T.classroom_length)){
-        classroom *p = (classroom*)malloc(sizeof(classroom));
-        strcpy(p->name,name_new);
-        p->next = NULL;
-        p->nextnode = NULL;
-        T.next2 = p;
-        T.classroom_length++;
-    }
-    else{
-        classroom *q = T.next2;
-        classroom *r = q;
-        int flag = 0;
-        while(q){
-            if(!(strcmp(q->name,name_new))){
-                flag = 1;
-                break;
-            }
-            else q=q->next;
-        }
-        if((!(q))&&(!(flag))){
-            classroom *p = (classroom*)malloc(sizeof(classroom));
-            strcpy(p->name,name_new);
-            p->next = NULL;
-            p->nextnode = NULL;
-            T.classroom_length++;
-            while(r->next){
-                r=r->next;
-            }
-            r->next=p;
-            }
-        else{
-            printf("已存在该教室!\n");
-        }
-    }
-}
 void add_classes(char name_new[10]){                       //添加班级
     if(!(T.classes_length)){
         classes *p = (classes*)malloc(sizeof(classes));
@@ -193,10 +157,8 @@ void MainWindow::showall(){
         }
         if(flag==5){
             ui->textBrowser->append(sentence);
-            str = str.fromLocal8Bit(p1->name);
             sentence = "";
-            sentence.append(str);
-            flag = 1;
+            flag = 0;
         }
         p1=p1->next;
     }
@@ -214,10 +176,8 @@ void MainWindow::showall(){
         }
         if(flag==5){
             ui->textBrowser->append(sentence);
-            str = str.fromLocal8Bit(p2->name);
             sentence = "";
-            sentence.append(str);
-            flag = 1;
+            flag = 0;
         }
         p2=p2->next;
     }
@@ -235,10 +195,8 @@ void MainWindow::showall(){
         }
         if(flag==5){
             ui->textBrowser->append(sentence);
-            str = str.fromLocal8Bit(p3->name);
             sentence = "";
-            sentence.append(str);
-            flag = 1;
+            flag = 0;
         }
         p3=p3->next;
     }
@@ -256,10 +214,8 @@ void MainWindow::showall(){
         }
         if(flag==5){
             ui->textBrowser->append(sentence);
-            str = str.fromLocal8Bit(p4->name);
             sentence = "";
-            sentence.append(str);
-            flag = 1;
+            flag = 0;
         }
         p4=p4->next;
     }

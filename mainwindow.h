@@ -73,7 +73,6 @@ class MainWindow : public QMainWindow
 public:
     explicit MainWindow(QWidget *parent = 0);
     void add_teacher(char name[10],char teach[10]);
-    void add_classroom(char name[10]);
     void add_classes(char name[10]);
     void add_lesson(char name[10]);
     void add_node();
