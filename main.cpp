@@ -1,6 +1,8 @@
 #include "mainwindow.h"
 #include <QApplication>
 struct head T={0,NULL,0,NULL,0,NULL,0,NULL};
+char temp1[30]={};
+char temp2[30]={};
 int choice = 0;
 int main(int argc, char *argv[])
 {

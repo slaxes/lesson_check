@@ -18,124 +18,8 @@ MainWindow::~MainWindow()
 {
     delete ui;
 }
-void add_teacher(char name_new[10],char teach_new[10]){    //添加教师链表
-    lesson *l = T.next4;
-    while(l){
-        if(strcmp(l->name,teach_new))
-            l=l->next;
-        else break;
-    }
-    if(!l){
-        printf("该课程不存在!\n");
-    }
-    if(!(T.teacher_length)){
-        teacher *p = (teacher*)malloc(sizeof(teacher));
-        strcpy(p->name,name_new);
-        p->next = NULL;
-        p->teach = l;
-        p->nextnode = NULL;
-        T.next1 = p;
-        T.teacher_length++;
-    }
-    else{
-        teacher *q = T.next1;
-        teacher *r = q;
-        int flag = 0;
-        while(q){
-            if(!(strcmp(q->name,name_new))){
-                flag = 1;
-                break;
-            }
-            else q=q->next;
-        }
-        if((!(q))&&(!(flag))){
-            teacher *p = (teacher*)malloc(sizeof(teacher));
-            strcpy(p->name,name_new);
-            p->next = NULL;
-            p->teach = l;
-            p->nextnode = NULL;
-            T.teacher_length++;
-            while(r->next){
-                r=r->next;
-            }
-            r->next=p;
-        }
-        else{
-            printf("已存在该教师!\n");
-        }
-    }
-}
-void add_classes(char name_new[10]){                       //添加班级
-    if(!(T.classes_length)){
-        classes *p = (classes*)malloc(sizeof(classes));
-        strcpy(p->name,name_new);
-        p->next = NULL;
-        p->nextnode = NULL;
-        T.next3 = p;
-        T.classes_length++;
-    }
-    else{
-        classes *q = T.next3;
-        classes *r = q;
-        int flag = 0;
-        while(q){
-            if(!(strcmp(q->name,name_new))){
-                flag = 1;
-                break;
-            }
-            else q=q->next;
-        }
-        if((!(q))&&(!(flag))){
-            classes *p = (classes*)malloc(sizeof(classes));
-            strcpy(p->name,name_new);
-            p->next = NULL;
-            p->nextnode = NULL;
-            T.classes_length++;
-            while(r->next){
-                r=r->next;
-            }
-            r->next=p;
-        }
-        else{
-            printf("已存在该班级!\n");
-        }
-    }
-}
-void add_lesson(char name_new[10]){                        //添加课程
-    if(!(T.lesson_length)){
-        lesson *p = (lesson*)malloc(sizeof(lesson));
-        strcpy(p->name,name_new);
-        p->next = NULL;
-        p->nextnode = NULL;
-        T.next4 = p;
-        T.lesson_length++;
-    }
-    else{
-        lesson *q = T.next4;
-        lesson *r = q;
-        int flag = 0;
-        while(q){
-            if(!(strcmp(q->name,name_new))){
-                flag = 1;
-                break;
-            }
-            else q=q->next;
-        }
-        if((!(q))&&(!(flag))){
-            lesson *p = (lesson*)malloc(sizeof(lesson));
-            strcpy(p->name,name_new);
-            p->next = NULL;
-            p->nextnode = NULL;
-            T.lesson_length++;
-            while(r->next){
-                r=r->next;
-            }
-            r->next=p;
-        }
-        else{
-            printf("已存在该课程!\n");
-        }
-    }
+void add_teacher(char name_new[30],char teach_new[30]){    //添加教师链表
+    ;
 }
 void add_node(){                                           //添加课堂
     ;
@@ -224,20 +108,28 @@ void MainWindow::showall(){
 void MainWindow::get_teacher(){
     choice = 1;
     nameget *ng = new nameget(this);
-    ng->show();
+    ng->setWindowTitle("请输入教师名称");
+    ng->exec();
+    choice = 5;
+    nameget *ng5 = new nameget(this);
+    ng5->setWindowTitle("请输入所教课程");
+    ng5->exec();
 }
 void MainWindow::get_classroom(){
     choice = 2;
     nameget *ng = new nameget(this);
+    ng->setWindowTitle("请输入教室编号");
     ng->show();
 }
 void MainWindow::get_classes(){
     choice = 3;
     nameget *ng = new nameget(this);
+    ng->setWindowTitle("请输入班级编号");
     ng->show();
 }
 void MainWindow::get_lesson(){
     choice = 4;
     nameget *ng = new nameget(this);
+    ng->setWindowTitle("请输入课程名称");
     ng->show();
 }

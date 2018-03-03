@@ -25,7 +25,7 @@ void nameget::add_info(){
         strcpy(temp1,clsrm_1.c_str());
         this->close();
     }
-    if(choice==2){
+    if(choice==2){   //添加教室
         QString clsrm=ui->lineEdit->text();
         std::string clsrm_1=clsrm.toStdString();
         if(!(T.classroom_length)){
