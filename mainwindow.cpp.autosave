@@ -130,6 +130,30 @@ void MainWindow::get_lesson(){
 void MainWindow::get_node(){
     choice = 6;
     nameget *ng = new nameget(this);
-    ng->setWindowTitle("请输入课堂名称");
-    ng->show();
+    ng->setWindowTitle("请输入课程名称");
+    ng->exec();
+    choice = 7;
+    nameget *ng1 = new nameget(this);
+    ng1->setWindowTitle("请输入教师名称");
+    ng1->exec();
+    choice = 8;
+    nameget *ng2 = new nameget(this);
+    ng2->setWindowTitle("请输入班级名称");
+    ng2->exec();
+    choice = 9;
+    nameget *ng3 = new nameget(this);
+    ng3->setWindowTitle("请输入教室名称");
+    ng3->exec();
+    choice = 10;
+    nameget *ng4 = new nameget(this);
+    ng4->setWindowTitle("请输入起始周数");
+    ng4->exec();
+    choice = 11;
+    nameget *ng5 = new nameget(this);
+    ng5->setWindowTitle("请输入结束周数");
+    ng5->exec();
+    choice = 12;
+    nameget *ng6 = new nameget(this);
+    ng6->setWindowTitle("请输入时间段");
+    ng6->exec();
 }

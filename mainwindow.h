@@ -21,10 +21,13 @@
 extern struct head T;
 
 typedef struct node{                        /*课堂节点*/
-    int level;                              //在所有课程中的层级
     int start_week;                         //起始周数
     int end_week;                           //结束周数
     int time_rank;                          //在一周中的时间位置（如周一上午1，2）
+    char clsrm[30];                         //教室
+    char cls[30];                           //班级
+    char tc[30];                            //教师
+    char ls[30];                            //课程
     node *nextforclassroom;
     node *nextforclasses;
     node *nextfortime;
@@ -72,7 +75,6 @@ class MainWindow : public QMainWindow
 
 public:
     explicit MainWindow(QWidget *parent = 0);
-    void add_teacher(char name[30],char teach[30]);
     void add_node();
     ~MainWindow();
 
@@ -82,6 +84,7 @@ private slots:
     void get_classroom();
     void get_classes();
     void get_lesson();
+    void get_node();
 
 private:
     Ui::MainWindow *ui;

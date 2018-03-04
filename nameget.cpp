@@ -19,13 +19,13 @@ nameget::~nameget()
 
 void nameget::add_info(){
     MainWindow *r=(MainWindow*)parentWidget();
-    if(choice==1){
+    if(choice==1){   //添加教师名称
         QString clsrm=ui->lineEdit->text();
         std::string clsrm_1=clsrm.toStdString();
         strcpy(temp1,clsrm_1.c_str());
         this->close();
     }
-    if(choice==2){
+    if(choice==2){   //添加教室
         QString clsrm=ui->lineEdit->text();
         std::string clsrm_1=clsrm.toStdString();
         if(!(T.classroom_length)){
@@ -66,7 +66,7 @@ void nameget::add_info(){
             }
         }
     }
-    if(choice==3){
+    if(choice==3){   //添加班级
         QString clsrm=ui->lineEdit->text();
         std::string clsrm_1=clsrm.toStdString();
         if(!(T.classes_length)){
@@ -107,7 +107,7 @@ void nameget::add_info(){
             }
         }
     }
-    if(choice==4){
+    if(choice==4){   //添加课程
         QString clsrm=ui->lineEdit->text();
         std::string clsrm_1=clsrm.toStdString();
         if(!(T.lesson_length)){
@@ -148,7 +148,7 @@ void nameget::add_info(){
             }
         }
     }
-    if(choice==5){
+    if(choice==5){   //添加教师所教课程
         QString clsrm=ui->lineEdit->text();
         std::string clsrm_1=clsrm.toStdString();
         strcpy(temp2,clsrm_1.c_str());
@@ -209,5 +209,17 @@ void nameget::add_info(){
                 }
             }
         }
+    }
+    if(choice==6){   //添加课堂的课程
+
+    }
+    if(choice==7){   //添加课堂的教师
+
+    }
+    if(choice==8){   //添加课堂的班级
+
+    }
+    if(choice==9){   //添加课堂的教室
+
     }
 }
