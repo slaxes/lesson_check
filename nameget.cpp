@@ -1,9 +1,16 @@
 #include "nameget.h"
 #include "ui_nameget.h"
 #include "mainwindow.h"
+#include "ui_mainwindow.h"
 extern int choice;
 extern char temp1[30];
 extern char temp2[30];
+extern char temp3[30];
+extern char temp4[30];
+extern int a;
+extern int b;
+extern int c;
+extern int available;
 nameget::nameget(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::nameget)
@@ -211,15 +218,276 @@ void nameget::add_info(){
         }
     }
     if(choice==6){   //添加课堂的课程
-
+        QString clsrm=ui->lineEdit->text();
+        std::string clsrm_1=clsrm.toStdString();
+        strcpy(temp1,clsrm_1.c_str());
+        if(!T.lesson_length){
+            this->close();
+            QMessageBox::information(NULL, tr("设置课程"), tr("该课程不存在！"));
+            available = 0;
+        }
+        else{
+            lesson *p =T.next4;
+            while(p->next){
+                if(!strcmp(temp1,p->name))
+                    break;
+                p=p->next;
+            }
+            if((p->next==NULL)&&strcmp(temp1,p->name)){
+                this->close();
+                QMessageBox::information(NULL, tr("设置课程"), tr("该课程不存在！"));
+                available = 0;
+            }
+        }
+        this->close();
     }
     if(choice==7){   //添加课堂的教师
-
+        QString clsrm=ui->lineEdit->text();
+        std::string clsrm_1=clsrm.toStdString();
+        strcpy(temp2,clsrm_1.c_str());
+        if(!T.teacher_length){
+            this->close();
+            QMessageBox::information(NULL, tr("设置教师"), tr("该教师不存在！"));
+            available = 0;
+        }
+        else{
+            teacher *p = T.next1;
+            while(p->next){
+                if(!strcmp(temp2,p->name))
+                    break;
+                p=p->next;
+            }
+            if((p->next==NULL)&&strcmp(temp2,p->name)){
+                this->close();
+                QMessageBox::information(NULL, tr("设置教师"), tr("该教师不存在！"));
+                available = 0;
+            }
+        }
+        this->close();
     }
     if(choice==8){   //添加课堂的班级
-
+        QString clsrm=ui->lineEdit->text();
+        std::string clsrm_1=clsrm.toStdString();
+        strcpy(temp3,clsrm_1.c_str());
+        if(!T.classes_length){
+            this->close();
+            QMessageBox::information(NULL, tr("设置班级"), tr("该班级不存在！"));
+            available = 0;
+        }
+        else{
+            classes *p = T.next3;
+            while(p->next){
+                if(!strcmp(temp3,p->name))
+                    break;
+                p=p->next;
+            }
+            if((p->next==NULL)&&strcmp(temp3,p->name)){
+                this->close();
+                QMessageBox::information(NULL, tr("设置班级"), tr("该班级不存在！"));
+                available = 0;
+            }
+        }
+        this->close();
     }
     if(choice==9){   //添加课堂的教室
-
+        QString clsrm=ui->lineEdit->text();
+        std::string clsrm_1=clsrm.toStdString();
+        strcpy(temp4,clsrm_1.c_str());
+        if(!T.classroom_length){
+            this->close();
+            QMessageBox::information(NULL, tr("设置教室"), tr("该教室不存在！"));
+            available = 0;
+        }
+        else{
+            classroom *p = T.next2;
+            while(p->next){
+                if(!strcmp(temp4,p->name))
+                    break;
+                p=p->next;
+            }
+            if((p->next==NULL)&&strcmp(temp4,p->name)){
+                this->close();
+                QMessageBox::information(NULL, tr("设置教室"), tr("该教室不存在！"));
+                available = 0;
+            }
+        }
+        this->close();
+    }
+    if(choice==10){  //添加课堂的起始周数
+        QString clsrm=ui->lineEdit->text();
+        a=clsrm.toInt();
+        if((a<1)||(a>20)){
+            QMessageBox::information(NULL, tr("设置起始周数"), tr("起始周数错误！"));
+            available = 0;
+        }
+        this->close();
+    }
+    if(choice==11){  //添加课堂的结束周数
+        QString clsrm=ui->lineEdit->text();
+        b=clsrm.toInt();
+        if(b<a){
+            QMessageBox::information(NULL, tr("设置结束周数"), tr("结束周数错误！"));
+            available = 0;
+        }
+        else{
+            if((b<1)||(b>20)){
+                QMessageBox::information(NULL, tr("设置结束周数"), tr("结束周数错误！"));
+                available = 0;
+            }
+        }
+        this->close();
+    }
+    if(choice==12){  //添加课堂的时间段   bug
+        QString clsrm=ui->lineEdit->text();
+        c=clsrm.toInt();
+        teacher *pteacher = T.next1;
+        while(pteacher->next){
+            if(!strcmp(pteacher->name,temp2))
+                break;
+            pteacher = pteacher->next;
+        }
+        classes *pclasses = T.next3;
+        while(pclasses->next){
+            if(!strcmp(pclasses->name,temp3))
+                break;
+            pclasses = pclasses->next;
+        }
+        lesson *plesson = T.next4;
+        while(plesson->next){
+            if(!strcmp(plesson->name,temp1))
+                break;
+            plesson = plesson->next;
+        }
+        classroom *pclassroom = T.next2;
+        while(pclassroom->next){
+            if(!strcmp(pclassroom->name,temp4))
+                break;
+            pclassroom = pclassroom->next;
+        }
+        node *pnode = (node*)malloc(sizeof(node));
+        strcpy(pnode->cls,temp3);
+        strcpy(pnode->clsrm,temp4);
+        strcpy(pnode->ls,temp1);
+        strcpy(pnode->tc,temp2);
+        pnode->start_week = a;
+        pnode->end_week = b;
+        pnode->time_rank = c;
+        //添加班级
+        {
+            node *p = pclasses->nextnode;
+            if(!p){                                  //之前不存在
+                pclasses->nextnode = pnode;
+                if(pclasses->next){
+                    pnode->nextforclasses=pclasses->next->nextnode;
+                }
+                else pnode->nextforclasses=NULL;
+            }
+            else if(p->time_rank>pnode->time_rank){  //插到第一个
+                pclasses->nextnode = pnode;
+                pnode->nextforclasses = p;
+            }
+            else{
+                while(p->nextforclasses){
+                    if(p->time_rank<pnode->time_rank){
+                        p=p->nextforclasses;
+                    }
+                }
+                if(p->time_rank>pnode->time_rank){   //该时段没有其他课
+                    node *q = pclasses->nextnode;
+                    while(q->nextforclasses!=p){
+                        q=q->nextforclasses;
+                    }
+                    q->nextforclasses = pnode;
+                    pnode->nextforclasses = p;
+                }
+                else{
+                    node *q = NULL;                  //错误情况
+                    while((p->nextforclasses)&&(p->time_rank==pnode->time_rank)){
+                        if(!((p->start_week>pnode->end_week)&&(pnode->start_week>p->end_week))){
+                            q=p;
+                            p=p->nextforclasses;
+                        }
+                        else if(p->end_week<pnode->start_week){
+                            p=p->nextforclasses;
+                        }
+                        else{
+                            if(q->nextforclasses==p){
+                                this->close();
+                                QMessageBox::information(NULL, tr("设置时间段"), tr("时间段错误！"));
+                            }
+                            else if(q->nextforclasses==NULL){
+                                this->close();
+                                QMessageBox::information(NULL, tr("设置时间段"), tr("时间段错误！"));
+                            }
+                            else{                    //正确情况
+                                while(q->nextforclasses!=p)
+                                    q=q->nextforclasses;
+                                if(q->nextforclasses->nextforclasses){
+                                    pnode->nextforclasses=q->nextforclasses->nextforclasses;
+                                    q->nextforclasses=pnode;
+                                }
+                                else{
+                                    q->nextforclasses=pnode;
+                                    if(pclasses->next){
+                                        pnode->nextforclasses=pclasses->next->nextnode;
+                                    }
+                                    else pnode->nextforclasses=NULL;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        this->close();
+    }
+    if(choice==13){  //教师名称（查）
+        QString clsrm=ui->lineEdit->text();
+        std::string clsrm_1=clsrm.toStdString();
+        strcpy(temp1,clsrm_1.c_str());
+        teacher *p = T.next1;
+        while(p->next){
+            if(!strcmp(p->name,temp1))
+                break;
+            else p=p->next;
+        }
+        if((p->next==NULL)&&(strcmp(p->name,temp1))){
+            QMessageBox::information(NULL, tr("查找教师"), tr("找不到该教师！"));
+            available = 0;
+            this->close();
+        }
+        else
+            strcpy(temp2,p->teach->name);
+        this->close();
+    }
+    if(choice==14){  //教师名称（改）
+        QString clsrm=ui->lineEdit->text();
+        std::string clsrm_1=clsrm.toStdString();
+        strcpy(temp3,clsrm_1.c_str());
+        teacher *p = T.next1;
+        while(p){
+            if(!strcmp(p->name,temp1))
+                strcpy(p->name,temp3);
+            node *q = p->nextnode;
+            while(q){
+                if(!strcmp(q->tc,temp1))
+                    strcpy(q->tc,temp3);
+                q=q->nextforclasses;
+            }
+            p=p->next;
+        }
+        r->ui->textBrowser->clear();
+        QString str = str.fromLocal8Bit("查／改后的结果为:");
+        r->ui->textBrowser->append(str);
+        str = str.fromLocal8Bit("教师: ");
+        r->ui->textBrowser->append(str);
+        str = str.fromLocal8Bit(temp3);
+        r->ui->textBrowser->textCursor().insertText(str);
+        r->ui->textBrowser->append("\n");
+        str = str.fromLocal8Bit("所教课程: ");
+        r->ui->textBrowser->append(str);
+        str = str.fromLocal8Bit(temp2);
+        r->ui->textBrowser->textCursor().insertText(str);
+        this->close();
     }
 }

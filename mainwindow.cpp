@@ -1,7 +1,10 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include "nameget.h"
+#include "ui_nameget.h"
 extern int choice;
+extern int available;
+extern char temp1[30];
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
@@ -12,6 +15,12 @@ MainWindow::MainWindow(QWidget *parent) :
     QObject::connect(ui->action_7,SIGNAL(triggered()),this,SLOT(get_classroom()));
     QObject::connect(ui->action_9,SIGNAL(triggered()),this,SLOT(get_classes()));
     QObject::connect(ui->action_11,SIGNAL(triggered()),this,SLOT(get_lesson()));
+    QObject::connect(ui->action_3,SIGNAL(triggered()),this,SLOT(get_node()));
+    QObject::connect(ui->action_13,SIGNAL(triggered()),this,SLOT(change_teacher()));
+    QObject::connect(ui->action_15,SIGNAL(triggered()),this,SLOT(change_classroom()));
+    QObject::connect(ui->action_17,SIGNAL(triggered()),this,SLOT(change_classes()));
+    QObject::connect(ui->action_19,SIGNAL(triggered()),this,SLOT(change_lesson()));
+    QObject::connect(ui->action_24,SIGNAL(triggered()),this,SLOT(change_node()));
 }
 
 MainWindow::~MainWindow()
@@ -130,6 +139,90 @@ void MainWindow::get_lesson(){
 void MainWindow::get_node(){
     choice = 6;
     nameget *ng = new nameget(this);
-    ng->setWindowTitle("请输入课堂名称");
-    ng->show();
+    ng->setWindowTitle("请设置课程名称");
+    ng->exec();
+    if(available){
+        choice = 7;
+        nameget *ng1 = new nameget(this);
+        ng1->setWindowTitle("请设置教师名称");
+        ng1->exec();
+    }
+    if(available){
+        choice = 8;
+        nameget *ng2 = new nameget(this);
+        ng2->setWindowTitle("请设置班级名称");
+        ng2->exec();
+    }
+    if(available){
+        choice = 9;
+        nameget *ng3 = new nameget(this);
+        ng3->setWindowTitle("请设置教室名称");
+        ng3->exec();
+    }
+    if(available){
+        choice = 10;
+        nameget *ng4 = new nameget(this);
+        ng4->setWindowTitle("请设置起始周数");
+        ng4->exec();
+    }
+    if(available){
+        choice = 11;
+        nameget *ng5 = new nameget(this);
+        ng5->setWindowTitle("请设置结束周数");
+        ng5->exec();
+    }
+    if(available){
+        choice = 12;
+        nameget *ng6 = new nameget(this);
+        ng6->setWindowTitle("请设置时间段");
+        ng6->exec();
+    }
+    available = 1;
+}
+void MainWindow::change_teacher(){
+    choice = 13;
+    nameget *ng = new nameget(this);
+    ng->setWindowTitle("请输入教师名称（查）");
+    ng->exec();
+    choice = 14;
+    if(available) {
+        nameget *ng = new nameget(this);
+        ng->setWindowTitle("请输入教师名称（改）");
+        ng->ui->lineEdit->setText(QString(temp1));
+        ng->exec();
+    }
+    available = 1;
+}
+void MainWindow::change_classroom(){
+    choice = 15;
+    nameget *ng = new nameget(this);
+    ng->setWindowTitle("请输入教室名称（查）");
+    ng->exec();
+    choice = 16;
+    nameget *ng1 = new nameget(this);
+    ng1->setWindowTitle("请输入教室名称（改）");
+    ng1->exec();
+}
+void MainWindow::change_classes(){
+    choice = 17;
+    nameget *ng = new nameget(this);
+    ng->setWindowTitle("请输入班级名称（查）");
+    ng->exec();
+    choice = 18;
+    nameget *ng1 = new nameget(this);
+    ng1->setWindowTitle("请输入班级名称（改）");
+    ng1->exec();
+}
+void MainWindow::change_lesson(){
+    choice = 19;
+    nameget *ng = new nameget(this);
+    ng->setWindowTitle("请输入课程名称（查）");
+    ng->exec();
+    choice = 20;
+    nameget *ng1 = new nameget(this);
+    ng1->setWindowTitle("请输入课程名称（改）");
+    ng1->exec();
+}
+void MainWindow::change_node(){
+
 }

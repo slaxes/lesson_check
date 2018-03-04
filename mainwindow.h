@@ -75,6 +75,7 @@ class MainWindow : public QMainWindow
 
 public:
     explicit MainWindow(QWidget *parent = 0);
+    Ui::MainWindow *ui;
     void add_node();
     ~MainWindow();
 
@@ -85,9 +86,14 @@ private slots:
     void get_classes();
     void get_lesson();
     void get_node();
+    void change_teacher();
+    void change_classroom();
+    void change_classes();
+    void change_lesson();
+    void change_node();
 
 private:
-    Ui::MainWindow *ui;
+
 };
 
 #endif // MAINWINDOW_H

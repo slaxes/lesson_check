@@ -14,13 +14,14 @@ class nameget : public QDialog
 
 public:
     explicit nameget(QWidget *parent = 0);
+     Ui::nameget *ui;
     ~nameget();
 
 private slots:
     void add_info();
 
 private:
-    Ui::nameget *ui;
+
 };
 
 #endif // NAMEGET_H
