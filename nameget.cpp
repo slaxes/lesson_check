@@ -490,4 +490,141 @@ void nameget::add_info(){
         r->ui->textBrowser->textCursor().insertText(str);
         this->close();
     }
+    if(choice==15){  //教室名称（查）
+        QString clsrm=ui->lineEdit->text();
+        std::string clsrm_1=clsrm.toStdString();
+        strcpy(temp1,clsrm_1.c_str());
+        classroom *p = T.next2;
+        while(p->next){
+            if(!strcmp(p->name,temp1))
+                break;
+            else p=p->next;
+        }
+        if((p->next==NULL)&&(strcmp(p->name,temp1))){
+            QMessageBox::information(NULL, tr("查找教室"), tr("找不到该教室！"));
+            available = 0;
+            this->close();
+        }
+        this->close();
+    }
+    if(choice==16){  //教室名称（改）
+        QString clsrm=ui->lineEdit->text();
+        std::string clsrm_1=clsrm.toStdString();
+        strcpy(temp3,clsrm_1.c_str());
+        teacher *p = T.next1;
+        while(p){
+            if(!strcmp(p->name,temp1))
+                strcpy(p->name,temp3);
+            node *q = p->nextnode;
+            while(q){
+                if(!strcmp(q->tc,temp1))
+                    strcpy(q->tc,temp3);
+                q=q->nextforclasses;
+            }
+            p=p->next;
+        }
+        r->ui->textBrowser->clear();
+        QString str = str.fromLocal8Bit("查／改后的结果为:");
+        r->ui->textBrowser->append(str);
+        str = str.fromLocal8Bit("教室: ");
+        r->ui->textBrowser->append(str);
+        str = str.fromLocal8Bit(temp3);
+        r->ui->textBrowser->textCursor().insertText(str);
+        this->close();
+    }
+    if(choice==17){  //班级名称（查）
+        QString clsrm=ui->lineEdit->text();
+        std::string clsrm_1=clsrm.toStdString();
+        strcpy(temp1,clsrm_1.c_str());
+        classes *p = T.next3;
+        while(p->next){
+            if(!strcmp(p->name,temp1))
+                break;
+            else p=p->next;
+        }
+        if((p->next==NULL)&&(strcmp(p->name,temp1))){
+            QMessageBox::information(NULL, tr("查找班级"), tr("找不到该班级！"));
+            available = 0;
+            this->close();
+        }
+        this->close();
+    }
+    if(choice==18){  //班级名称（改）
+        QString clsrm=ui->lineEdit->text();
+        std::string clsrm_1=clsrm.toStdString();
+        strcpy(temp3,clsrm_1.c_str());
+        classes *p = T.next3;
+        while(p){
+            if(!strcmp(p->name,temp1))
+                strcpy(p->name,temp3);
+            node *q = p->nextnode;
+            while(q){
+                if(!strcmp(q->tc,temp1))
+                    strcpy(q->tc,temp3);
+                q=q->nextforclasses;
+            }
+            p=p->next;
+        }
+        r->ui->textBrowser->clear();
+        QString str = str.fromLocal8Bit("查／改后的结果为:");
+        r->ui->textBrowser->append(str);
+        str = str.fromLocal8Bit("班级: ");
+        r->ui->textBrowser->append(str);
+        str = str.fromLocal8Bit(temp3);
+        r->ui->textBrowser->textCursor().insertText(str);
+        this->close();
+    }
+    if(choice==19){  //课程名称（查）
+        QString clsrm=ui->lineEdit->text();
+        std::string clsrm_1=clsrm.toStdString();
+        strcpy(temp1,clsrm_1.c_str());
+        lesson *p = T.next4;
+        while(p->next){
+            if(!strcmp(p->name,temp1))
+                break;
+            else p=p->next;
+        }
+        if((p->next==NULL)&&(strcmp(p->name,temp1))){
+            QMessageBox::information(NULL, tr("查找课程"), tr("找不到该课程！"));
+            available = 0;
+            this->close();
+        }
+        this->close();
+    }
+    if(choice==20){  //课程名称（改）
+        QString clsrm=ui->lineEdit->text();
+        std::string clsrm_1=clsrm.toStdString();
+        strcpy(temp3,clsrm_1.c_str());
+        lesson *p = T.next4;
+        while(p){
+            if(!strcmp(p->name,temp1))
+                strcpy(p->name,temp3);
+            node *q = p->nextnode;
+            while(q){
+                if(!strcmp(q->tc,temp1))
+                    strcpy(q->tc,temp3);
+                q=q->nextforclasses;
+            }
+            p=p->next;
+        }
+        r->ui->textBrowser->clear();
+        QString str = str.fromLocal8Bit("查／改后的结果为:");
+        r->ui->textBrowser->append(str);
+        str = str.fromLocal8Bit("课程: ");
+        r->ui->textBrowser->append(str);
+        str = str.fromLocal8Bit(temp3);
+        r->ui->textBrowser->textCursor().insertText(str);
+        r->ui->textBrowser->append("\n");
+        str = str.fromLocal8Bit("教该门课程的老师: ");
+        r->ui->textBrowser->append(str);
+        teacher *s = T.next1;
+        while(s){
+            if(!strcmp(s->teach->name,temp3)){
+                str = str.fromLocal8Bit(s->name);
+                r->ui->textBrowser->append(str);
+            }
+            s=s->next;
+        }
+        this->close();
+    }
 }
