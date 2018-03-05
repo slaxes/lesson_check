@@ -21,6 +21,17 @@ MainWindow::MainWindow(QWidget *parent) :
     QObject::connect(ui->action_17,SIGNAL(triggered()),this,SLOT(change_classes()));
     QObject::connect(ui->action_19,SIGNAL(triggered()),this,SLOT(change_lesson()));
     QObject::connect(ui->action_24,SIGNAL(triggered()),this,SLOT(change_node()));
+    QObject::connect(ui->action_6,SIGNAL(triggered()),this,SLOT(seek_teacher()));
+    QObject::connect(ui->action_20,SIGNAL(triggered()),this,SLOT(seek_classroom()));
+    QObject::connect(ui->action_22,SIGNAL(triggered()),this,SLOT(seek_classes()));
+    QObject::connect(ui->action_25,SIGNAL(triggered()),this,SLOT(seek_lesson()));
+    QObject::connect(ui->action_29,SIGNAL(triggered()),this,SLOT(seek_node()));
+    QObject::connect(ui->action_12,SIGNAL(triggered()),this,SLOT(del_teacher()));
+    QObject::connect(ui->action_14,SIGNAL(triggered()),this,SLOT(del_classroom()));
+    QObject::connect(ui->action_16,SIGNAL(triggered()),this,SLOT(del_classes()));
+    QObject::connect(ui->action_18,SIGNAL(triggered()),this,SLOT(del_lesson()));
+    QObject::connect(ui->action_10,SIGNAL(triggered()),this,SLOT(del_node()));
+
 }
 
 MainWindow::~MainWindow()
@@ -32,81 +43,86 @@ void MainWindow::showall(){
     int flag = 0;
     ui->textBrowser->setFontWeight(20);
     QString str = str.fromLocal8Bit("教师的数据信息为：");
-    QString sentence = "";
     ui->textBrowser->append(str);
+    str = str.fromLocal8Bit("\n");
+    ui->textBrowser->textCursor().insertText("\n");
     teacher *p1 = T.next1;
     while(p1){
-        if(flag<5){
+        if(flag!=5){
             str = str.fromLocal8Bit(p1->name);
-            sentence.append(str);
-            sentence.append(' ');
+            ui->textBrowser->textCursor().insertText(str);
+            str = str.fromLocal8Bit(" ");
+            ui->textBrowser->textCursor().insertText(str);
             flag++;
         }
         if(flag==5){
-            ui->textBrowser->append(sentence);
-            sentence = "";
+            str = str.fromLocal8Bit("\n");
+            ui->textBrowser->textCursor().insertText("\n");
             flag = 0;
         }
         p1=p1->next;
     }
-    ui->textBrowser->append(sentence);
     str = str.fromLocal8Bit("教室的数据信息为：");
-    sentence = "";
     ui->textBrowser->append(str);
+    str = str.fromLocal8Bit("\n");
+    ui->textBrowser->textCursor().insertText("\n");
     classroom *p2 = T.next2;
     while(p2){
-        if(flag<5){
+        if(flag!=5){
             str = str.fromLocal8Bit(p2->name);
-            sentence.append(str);
-            sentence.append(' ');
+            ui->textBrowser->textCursor().insertText(str);
+            str = str.fromLocal8Bit(" ");
+            ui->textBrowser->textCursor().insertText(str);
             flag++;
         }
         if(flag==5){
-            ui->textBrowser->append(sentence);
-            sentence = "";
+            str = str.fromLocal8Bit("\n");
+            ui->textBrowser->textCursor().insertText("\n");
             flag = 0;
         }
         p2=p2->next;
     }
-    ui->textBrowser->append(sentence);
     str = str.fromLocal8Bit("班级的数据信息为：");
-    sentence = "";
     ui->textBrowser->append(str);
+    str = str.fromLocal8Bit("\n");
+    ui->textBrowser->textCursor().insertText("\n");
     classes *p3 = T.next3;
     while(p3){
-        if(flag<5){
+        if(flag!=5){
             str = str.fromLocal8Bit(p3->name);
-            sentence.append(str);
-            sentence.append(' ');
+            ui->textBrowser->textCursor().insertText(str);
+            str = str.fromLocal8Bit(" ");
+            ui->textBrowser->textCursor().insertText(str);
             flag++;
         }
         if(flag==5){
-            ui->textBrowser->append(sentence);
-            sentence = "";
+            str = str.fromLocal8Bit("\n");
+            ui->textBrowser->textCursor().insertText("\n");
             flag = 0;
         }
         p3=p3->next;
     }
-    ui->textBrowser->append(sentence);
     str = str.fromLocal8Bit("课程的数据信息为：");
-    sentence = "";
     ui->textBrowser->append(str);
+    str = str.fromLocal8Bit("\n");
+    ui->textBrowser->textCursor().insertText("\n");
     lessson *p4 = T.next4;
+    flag=0;
     while(p4){
-        if(flag<5){
+        if(flag!=5){
             str = str.fromLocal8Bit(p4->name);
-            sentence.append(str);
-            sentence.append(' ');
+            ui->textBrowser->textCursor().insertText(str);
+            str = str.fromLocal8Bit(" ");
+            ui->textBrowser->textCursor().insertText(str);
             flag++;
         }
         if(flag==5){
-            ui->textBrowser->append(sentence);
-            sentence = "";
+            str = str.fromLocal8Bit("\n");
+            ui->textBrowser->textCursor().insertText("\n");
             flag = 0;
         }
         p4=p4->next;
     }
-    ui->textBrowser->append(sentence);
 }
 void MainWindow::get_teacher(){
     choice = 1;
@@ -236,5 +252,56 @@ void MainWindow::change_lesson(){
     available = 1;
 }
 void MainWindow::change_node(){
-
+    ;
+}
+void MainWindow::seek_teacher(){
+    choice = 21;
+    nameget *ng = new nameget(this);
+    ng->setWindowTitle("请输入检索教师");
+    ng->show();
+}
+void MainWindow::seek_classroom(){
+    choice = 22;
+    nameget *ng = new nameget(this);
+    ng->setWindowTitle("请输入检索教室");
+    ng->show();
+}
+void MainWindow::seek_classes(){
+    choice = 23;
+    nameget *ng = new nameget(this);
+    ng->setWindowTitle("请输入检索班级");
+    ng->show();
+}
+void MainWindow::seek_lesson(){
+    choice = 24;
+    nameget *ng = new nameget(this);
+    ng->setWindowTitle("请输入检索课程");
+    ng->show();
+}
+void MainWindow::seek_node(){
+    ;
+}
+void MainWindow::del_teacher(){
+    choice = 25;
+    nameget *ng = new nameget(this);
+    ng->setWindowTitle("请输入检索教师");
+    ng->show();
+}
+void MainWindow::del_classroom(){
+    choice = 26;
+    nameget *ng = new nameget(this);
+    ng->setWindowTitle("请输入检索教室");
+    ng->show();
+}
+void MainWindow::del_classes(){
+    choice = 27;
+    nameget *ng = new nameget(this);
+    ng->setWindowTitle("请输入检索班级");
+    ng->show();
+}
+void MainWindow::del_lesson(){
+    choice = 28;
+    nameget *ng = new nameget(this);
+    ng->setWindowTitle("请输入检索课程");
+    ng->show();
 }

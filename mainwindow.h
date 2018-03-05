@@ -28,11 +28,7 @@ typedef struct node{                        /*课堂节点*/
     char cls[30];                           //班级
     char tc[30];                            //教师
     char ls[30];                            //课程
-    node *nextforclassroom;
     node *nextforclasses;
-    node *nextfortime;
-    node *nextforteacher;
-    node *nextforlessons;
 }node;
 typedef struct lessson{                     /*课程结构*/
     char name[30];                          //课程名称
@@ -91,7 +87,15 @@ private slots:
     void change_classes();
     void change_lesson();
     void change_node();
-
+    void seek_teacher();
+    void seek_classroom();
+    void seek_classes();
+    void seek_lesson();
+    void seek_node();
+    void del_teacher();
+    void del_classroom();
+    void del_classes();
+    void del_lesson();
 private:
 
 };
