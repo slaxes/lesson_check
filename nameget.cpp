@@ -1158,12 +1158,119 @@ void nameget::add_info(){
         this->close();
     }
     if(choice==34){  //检索课堂（教室）
+        QString clsrm=ui->lineEdit->text();
+        std::string clsrm_1=clsrm.toStdString();
+        strcpy(temp2,clsrm_1.c_str());
+        classes *p = T.next3;
+        r->ui->textBrowser->clear();
+        QString str = str.fromLocal8Bit("检索的结果为:");
+        r->ui->textBrowser->append(str);
+        while(p){
+            if(!strcmp(p->name,temp1))
+                break;
+            else p=p->next;
+        }
+        node *q = p->nextnode;
+        while(q){
+            if(!strcmp(q->clsrm,temp2)){
+                str = str.fromLocal8Bit("教室: ");
+                r->ui->textBrowser->append(str);
+                str = str.fromLocal8Bit(q->clsrm);
+                r->ui->textBrowser->textCursor().insertText(str);
+                str = str.fromLocal8Bit("班级: ");
+                r->ui->textBrowser->append(str);
+                str = str.fromLocal8Bit(q->cls);
+                r->ui->textBrowser->textCursor().insertText(str);
+                str = str.fromLocal8Bit("课程: ");
+                r->ui->textBrowser->append(str);
+                str = str.fromLocal8Bit(q->ls);
+                r->ui->textBrowser->textCursor().insertText(str);
+                str = str.fromLocal8Bit("起始周数: ");
+                r->ui->textBrowser->append(str);
+                r->ui->textBrowser->textCursor().insertText(QString::number(q->start_week,10));
+                str = str.fromLocal8Bit("结束周数: ");
+                r->ui->textBrowser->append(str);
+                r->ui->textBrowser->textCursor().insertText(QString::number(q->end_week,10));
+            }
+            q=q->nextforclasses;
+        }
         this->close();
     }
     if(choice==35){  //检索课堂（课程）
+        QString clsrm=ui->lineEdit->text();
+        std::string clsrm_1=clsrm.toStdString();
+        strcpy(temp2,clsrm_1.c_str());
+        classes *p = T.next3;
+        r->ui->textBrowser->clear();
+        QString str = str.fromLocal8Bit("检索的结果为:");
+        r->ui->textBrowser->append(str);
+        while(p){
+            if(!strcmp(p->name,temp1))
+                break;
+            else p=p->next;
+        }
+        node *q = p->nextnode;
+        while(q){
+            if(!strcmp(q->ls,temp2)){
+                str = str.fromLocal8Bit("教室: ");
+                r->ui->textBrowser->append(str);
+                str = str.fromLocal8Bit(q->clsrm);
+                r->ui->textBrowser->textCursor().insertText(str);
+                str = str.fromLocal8Bit("班级: ");
+                r->ui->textBrowser->append(str);
+                str = str.fromLocal8Bit(q->cls);
+                r->ui->textBrowser->textCursor().insertText(str);
+                str = str.fromLocal8Bit("课程: ");
+                r->ui->textBrowser->append(str);
+                str = str.fromLocal8Bit(q->ls);
+                r->ui->textBrowser->textCursor().insertText(str);
+                str = str.fromLocal8Bit("起始周数: ");
+                r->ui->textBrowser->append(str);
+                r->ui->textBrowser->textCursor().insertText(QString::number(q->start_week,10));
+                str = str.fromLocal8Bit("结束周数: ");
+                r->ui->textBrowser->append(str);
+                r->ui->textBrowser->textCursor().insertText(QString::number(q->end_week,10));
+            }
+            q=q->nextforclasses;
+        }
         this->close();
     }
     if(choice==36){  //检索课堂（时间）
+        QString clsrm=ui->lineEdit->text();
+        a = clsrm.toInt();
+        classes *p = T.next3;
+        r->ui->textBrowser->clear();
+        QString str = str.fromLocal8Bit("检索的结果为:");
+        r->ui->textBrowser->append(str);
+        while(p){
+            if(!strcmp(p->name,temp1))
+                break;
+            else p=p->next;
+        }
+        node *q = p->nextnode;
+        while(q){
+            if(q->time_rank==a){
+                str = str.fromLocal8Bit("教室: ");
+                r->ui->textBrowser->append(str);
+                str = str.fromLocal8Bit(q->clsrm);
+                r->ui->textBrowser->textCursor().insertText(str);
+                str = str.fromLocal8Bit("班级: ");
+                r->ui->textBrowser->append(str);
+                str = str.fromLocal8Bit(q->cls);
+                r->ui->textBrowser->textCursor().insertText(str);
+                str = str.fromLocal8Bit("课程: ");
+                r->ui->textBrowser->append(str);
+                str = str.fromLocal8Bit(q->ls);
+                r->ui->textBrowser->textCursor().insertText(str);
+                str = str.fromLocal8Bit("起始周数: ");
+                r->ui->textBrowser->append(str);
+                r->ui->textBrowser->textCursor().insertText(QString::number(q->start_week,10));
+                str = str.fromLocal8Bit("结束周数: ");
+                r->ui->textBrowser->append(str);
+                r->ui->textBrowser->textCursor().insertText(QString::number(q->end_week,10));
+            }
+            q=q->nextforclasses;
+        }
         this->close();
     }
 }
