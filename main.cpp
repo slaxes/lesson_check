@@ -8,6 +8,7 @@ char temp4[30]="";
 int a=0,b=0,c=0;
 int choice = 0;
 int available = 1;
+node *target = NULL;
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
