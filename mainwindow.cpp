@@ -315,7 +315,65 @@ void MainWindow::seek_lesson(){
     ng->show();
 }
 void MainWindow::seek_node(){
-    ;
+    choice = 32;
+    nameget *ng = new nameget(this);
+    ng->setWindowTitle("请输入检索方式");
+    ng->exec();
+    if(available){
+        if(available==1){  //temp1
+            choice = 17;
+            nameget *ng = new nameget(this);
+            ng->setWindowTitle("请输入班级");
+            ng->exec();
+            if(available){
+                choice = 33;
+                nameget *ng1 = new nameget(this);
+                ng1->setWindowTitle("请输入教师");
+                ng1->exec();
+            }
+            available = 1;
+        }
+        if(available==2){
+            choice = 17;
+            nameget *ng = new nameget(this);
+            ng->setWindowTitle("请输入班级");
+            ng->exec();
+            if(available){
+                choice = 34;
+                nameget *ng1 = new nameget(this);
+                ng1->setWindowTitle("请输入教室");
+                ng1->exec();
+            }
+            available = 1;
+        }
+        if(available==3){
+            choice = 17;
+            nameget *ng = new nameget(this);
+            ng->setWindowTitle("请输入班级");
+            ng->exec();
+            if(available){
+                choice = 35;
+                nameget *ng1 = new nameget(this);
+                ng1->setWindowTitle("请输入课程");
+                ng1->exec();
+            }
+            available = 1;
+        }
+        if(available==4){
+            choice = 17;
+            nameget *ng = new nameget(this);
+            ng->setWindowTitle("请输入班级");
+            ng->exec();
+            if(available){
+                choice = 36;
+                nameget *ng1 = new nameget(this);
+                ng1->setWindowTitle("请输入时间");
+                ng1->exec();
+            }
+            available = 1;
+        }
+    }
+    available = 1;
 }
 void MainWindow::del_teacher(){
     choice = 25;

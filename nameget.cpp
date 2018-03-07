@@ -382,9 +382,9 @@ void nameget::add_info(){
             else{
                 int flag = 1;
                 while(p){
-                    if((p->time_rank==pnode->time_rank)&&(p->start_week<pnode->start_week)&&(pnode->start_week<p->end_week))
+                    if((p->time_rank==pnode->time_rank)&&(p->start_week<=pnode->start_week)&&(pnode->start_week<=p->end_week))
                         flag = 0;
-                    if((p->time_rank==pnode->time_rank)&&(p->start_week<pnode->end_week)&&(pnode->end_week<p->end_week))
+                    if((p->time_rank==pnode->time_rank)&&(p->start_week<=pnode->end_week)&&(pnode->end_week<=p->end_week))
                         flag = 0;
                     p=p->nextforclasses;
                 }
@@ -408,12 +408,12 @@ void nameget::add_info(){
         std::string clsrm_1=clsrm.toStdString();
         strcpy(temp1,clsrm_1.c_str());
         teacher *p = T.next1;
-        while(p->next){
+        while(p){
             if(!strcmp(p->name,temp1))
                 break;
             else p=p->next;
         }
-        if((p->next==NULL)&&(strcmp(p->name,temp1))){
+        if(!p){
             QMessageBox::information(NULL, tr("查找教师"), tr("找不到该教师！"));
             available = 0;
             this->close();
@@ -457,12 +457,12 @@ void nameget::add_info(){
         std::string clsrm_1=clsrm.toStdString();
         strcpy(temp1,clsrm_1.c_str());
         classroom *p = T.next2;
-        while(p->next){
+        while(p){
             if(!strcmp(p->name,temp1))
                 break;
             else p=p->next;
         }
-        if((p->next==NULL)&&(strcmp(p->name,temp1))){
+        if(!p){
             QMessageBox::information(NULL, tr("查找教室"), tr("找不到该教室！"));
             available = 0;
             this->close();
@@ -499,12 +499,12 @@ void nameget::add_info(){
         std::string clsrm_1=clsrm.toStdString();
         strcpy(temp1,clsrm_1.c_str());
         classes *p = T.next3;
-        while(p->next){
+        while(p){
             if(!strcmp(p->name,temp1))
                 break;
             else p=p->next;
         }
-        if((p->next==NULL)&&(strcmp(p->name,temp1))){
+        if(!p){
             QMessageBox::information(NULL, tr("查找班级"), tr("找不到该班级！"));
             available = 0;
             this->close();
@@ -541,12 +541,12 @@ void nameget::add_info(){
         std::string clsrm_1=clsrm.toStdString();
         strcpy(temp1,clsrm_1.c_str());
         lesson *p = T.next4;
-        while(p->next){
+        while(p){
             if(!strcmp(p->name,temp1))
                 break;
             else p=p->next;
         }
-        if((p->next==NULL)&&(strcmp(p->name,temp1))){
+        if(!p){
             QMessageBox::information(NULL, tr("查找课程"), tr("找不到该课程！"));
             available = 0;
             this->close();
@@ -1101,5 +1101,69 @@ void nameget::add_info(){
                 }
             }
         }
+    }
+    if(choice==32){  //检索课堂（方式）
+        QString clsrm=ui->lineEdit->text();
+        a=clsrm.toInt();
+        available = 0;
+        if(a==1)  //教师
+            available=1;
+        else if(a==2)  //教室
+            available=2;
+        else if(a==3)  //课程
+            available=3;
+        else if(a==4)  //时间
+            available=4;
+        else
+            QMessageBox::information(NULL, tr("选项错误"), tr("选项错误！"));
+        this->close();
+    }
+    if(choice==33){  //检索课堂（教师）
+        QString clsrm=ui->lineEdit->text();
+        std::string clsrm_1=clsrm.toStdString();
+        strcpy(temp2,clsrm_1.c_str());
+        classes *p = T.next3;
+        r->ui->textBrowser->clear();
+        QString str = str.fromLocal8Bit("检索的结果为:");
+        r->ui->textBrowser->append(str);
+        while(p){
+            if(!strcmp(p->name,temp1))
+                break;
+            else p=p->next;
+        }
+        node *q = p->nextnode;
+        while(q){
+            if(!strcmp(q->tc,temp2)){
+                str = str.fromLocal8Bit("教室: ");
+                r->ui->textBrowser->append(str);
+                str = str.fromLocal8Bit(q->clsrm);
+                r->ui->textBrowser->textCursor().insertText(str);
+                str = str.fromLocal8Bit("班级: ");
+                r->ui->textBrowser->append(str);
+                str = str.fromLocal8Bit(q->cls);
+                r->ui->textBrowser->textCursor().insertText(str);
+                str = str.fromLocal8Bit("课程: ");
+                r->ui->textBrowser->append(str);
+                str = str.fromLocal8Bit(q->ls);
+                r->ui->textBrowser->textCursor().insertText(str);
+                str = str.fromLocal8Bit("起始周数: ");
+                r->ui->textBrowser->append(str);
+                r->ui->textBrowser->textCursor().insertText(QString::number(q->start_week,10));
+                str = str.fromLocal8Bit("结束周数: ");
+                r->ui->textBrowser->append(str);
+                r->ui->textBrowser->textCursor().insertText(QString::number(q->end_week,10));
+            }
+            q=q->nextforclasses;
+        }
+        this->close();
+    }
+    if(choice==34){  //检索课堂（教室）
+        this->close();
+    }
+    if(choice==35){  //检索课堂（课程）
+        this->close();
+    }
+    if(choice==36){  //检索课堂（时间）
+        this->close();
     }
 }
