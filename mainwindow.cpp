@@ -32,7 +32,7 @@ MainWindow::MainWindow(QWidget *parent) :
     QObject::connect(ui->action_16,SIGNAL(triggered()),this,SLOT(del_classes()));
     QObject::connect(ui->action_18,SIGNAL(triggered()),this,SLOT(del_lesson()));
     QObject::connect(ui->action_10,SIGNAL(triggered()),this,SLOT(del_node()));
-
+    QObject::connect(ui->actiond,SIGNAL(triggered()),this,SLOT(save()));
 }
 
 MainWindow::~MainWindow()

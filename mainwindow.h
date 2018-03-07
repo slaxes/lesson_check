@@ -97,6 +97,7 @@ private slots:
     void del_classes();
     void del_lesson();
     void del_node();
+    void save();
 private:
 
 };
