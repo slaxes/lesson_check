@@ -159,6 +159,7 @@ void MainWindow::save(){
             q=q->nextforclasses;
         }
         fwrite(&num,sizeof(int),1,f);
+        q=p3->nextnode;
         while(q){
             fwrite(q,sizeof(node),1,f);
             q=q->nextforclasses;

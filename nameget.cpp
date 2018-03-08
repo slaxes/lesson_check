@@ -1273,4 +1273,14 @@ void nameget::add_info(){
         }
         this->close();
     }
+    if(choice==37){  //选择周数
+        QString clsrm=ui->lineEdit->text();
+        a = clsrm.toInt();
+        this->close();
+    }
+    if(choice==38){  //选择时间段
+        QString clsrm=ui->lineEdit->text();
+        b = clsrm.toInt();
+        this->close();
+    }
 }

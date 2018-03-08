@@ -35,3 +35,9 @@ HEADERS += \
 FORMS += \
         mainwindow.ui \
     nameget.ui
+
+DISTFILES += \
+    app.rc \
+    icon1.ico
+
+RC_FILE += app.rc

@@ -23,7 +23,7 @@
    </size>
   </property>
   <property name="windowTitle">
-   <string>MainWindow</string>
+   <string>课程管理助手</string>
   </property>
   <widget class="QWidget" name="centralWidget">
    <widget class="QTextBrowser" name="textBrowser">
@@ -68,7 +68,7 @@ p, li { white-space: pre-wrap; }
      <x>0</x>
      <y>0</y>
      <width>661</width>
-     <height>26</height>
+     <height>23</height>
     </rect>
    </property>
    <widget class="QMenu" name="menu">
@@ -119,6 +119,16 @@ p, li { white-space: pre-wrap; }
     <property name="title">
      <string>分析</string>
     </property>
+    <addaction name="action_8"/>
+    <addaction name="separator"/>
+    <addaction name="action_36"/>
+    <addaction name="separator"/>
+    <addaction name="action_21"/>
+    <addaction name="separator"/>
+    <addaction name="action_23"/>
+    <addaction name="separator"/>
+    <addaction name="action_27"/>
+    <addaction name="separator"/>
    </widget>
    <widget class="QMenu" name="menu_7">
     <property name="title">
@@ -303,6 +313,31 @@ p, li { white-space: pre-wrap; }
   <action name="action_29">
    <property name="text">
     <string>课堂</string>
+   </property>
+  </action>
+  <action name="action_8">
+   <property name="text">
+    <string>空闲教室查找</string>
+   </property>
+  </action>
+  <action name="action_21">
+   <property name="text">
+    <string>教室利用与能效分析</string>
+   </property>
+  </action>
+  <action name="action_23">
+   <property name="text">
+    <string>教师承担课堂合理性分析</string>
+   </property>
+  </action>
+  <action name="action_27">
+   <property name="text">
+    <string>班级参与课堂的合理性分析</string>
+   </property>
+  </action>
+  <action name="action_36">
+   <property name="text">
+    <string>空闲教室与检索</string>
    </property>
   </action>
  </widget>
