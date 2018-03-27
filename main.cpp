@@ -123,6 +123,19 @@ void load(){
         }
         ce1=ce1->next;
     }
+    te1 = T.next1;
+    while(te1){
+        fread(temp1,sizeof(lesson),1,f);
+        l1 = T.next4;
+        while(l1){
+            if(!strcmp(l1->name,temp1)){
+                te1->teach=l1;
+                break;
+            }
+            l1=l1->next;
+        }
+        te1=te1->next;
+    }
     fclose(f);
 }
 void MainWindow::save(){
@@ -165,6 +178,11 @@ void MainWindow::save(){
             q=q->nextforclasses;
         }
         p3=p3->next;
+    }
+    p1 = T.next1;
+    while(p1){
+        fwrite(p1->teach->name,sizeof(lesson),1,f);
+        p1=p1->next;
     }
     fclose(f);
 }

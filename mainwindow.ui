@@ -76,10 +76,6 @@ p, li { white-space: pre-wrap; }
      <string>文件</string>
     </property>
     <addaction name="actiond"/>
-    <addaction name="separator"/>
-    <addaction name="action_2"/>
-    <addaction name="separator"/>
-    <addaction name="action_4"/>
    </widget>
    <widget class="QMenu" name="menu_2">
     <property name="title">
@@ -337,7 +333,7 @@ p, li { white-space: pre-wrap; }
   </action>
   <action name="action_36">
    <property name="text">
-    <string>空闲教室与检索</string>
+    <string>空闲教室检索</string>
    </property>
   </action>
  </widget>

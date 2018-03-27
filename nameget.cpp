@@ -161,7 +161,7 @@ void nameget::add_info(){
         std::string clsrm_1=clsrm.toStdString();
         strcpy(temp2,clsrm_1.c_str());
         lesson *s = T.next4;
-        if(!s){ //物理
+        if(!s){
             this->close();
             QMessageBox::information(NULL, tr("添加教师"), tr("该课堂不存在！"));
         }
@@ -212,7 +212,7 @@ void nameget::add_info(){
                     }
                     else{
                         this->close();
-                        QMessageBox::information(NULL, tr("添加班级"), tr("该教师已存在！"));
+                        QMessageBox::information(NULL, tr("添加教师"), tr("该教师已存在！"));
                     }
                 }
             }
@@ -998,7 +998,7 @@ void nameget::add_info(){
         }
         if(!flag){
             this->close();
-            QMessageBox::information(NULL, tr("选择教室"), tr("找不到该教室！"));
+            QMessageBox::information(NULL, tr("查找课堂"), tr("找不到该课堂！"));
             available = 0;
         }
         else{
@@ -1006,7 +1006,7 @@ void nameget::add_info(){
             this->close();
         }
     }
-    if(choice==30){  //课堂教室（改）
+    if(choice==30){  //课堂（改）
         QString clsrm=ui->lineEdit->text();
         std::string clsrm_1=clsrm.toStdString();
         strcpy(target->clsrm,clsrm_1.c_str());
@@ -1085,7 +1085,7 @@ void nameget::add_info(){
         }
         if(!flag){
             this->close();
-            QMessageBox::information(NULL, tr("选择教室"), tr("找不到该教室！"));
+            QMessageBox::information(NULL, tr("删除课堂"), tr("找不到该课堂！"));
             available = 0;
         }
         else{
